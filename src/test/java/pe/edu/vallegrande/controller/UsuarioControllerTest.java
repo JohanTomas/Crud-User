@@ -41,7 +41,7 @@ class UsuarioControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(usuario)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.nombre").value("JUAN PEREZ"))
+                .andExpect(jsonPath("$.nombre").value("Juan Perez"))
                 .andExpect(jsonPath("$.email").value("juan@email.com"));
     }
 

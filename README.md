@@ -1,53 +1,127 @@
 
-# Reto de Refactorización – Calidad de Código (6° semestre)
+# ✅ Proyecto Completado - Mejora de Calidad y Refactorización de Código
 
-Este proyecto **contiene errores intencionales de calidad** para que realices refactorización aplicando buenas prácticas.
+## 🎯 Objetivos Cumplidos
 
-## Objetivos
-- Identificar **malas prácticas** en Controller, Service, Repository y Model.
-- Aplicar **principios SOLID**, **DRY** y **clean code**.
-- Mejorar **legibilidad, mantenibilidad y robustez**.
+- ✅ **Identificar errores de calidad** en el código original
+- ✅ **Refactorizar aplicando buenas prácticas** de desarrollo
+- ✅ **Documentar y exponer resultados** con cobertura de pruebas JaCoCo
 
-## Reglas del reto
-1. Mantén la funcionalidad (CRUD simple de usuarios) pero **mejora el diseño**.
-2. No agregues nuevas dependencias pesadas (mantén simple el build).
-3. Escribe **pruebas unitarias** mínimas si te alcanza el tiempo (opcional).
+## 📁 Estructura del Proyecto Refactorizado
 
-## Problemas intencionales (encuéntralos y corrígelos)
-- Inyección por campo y **falta de estereotipos** (`@Service`, `@Repository`).
-- **Validaciones** y lógica de negocio en el `Controller`.
-- **Código duplicado** (ordenamiento y validaciones).
-- **Nombres crípticos** de rutas y métodos (`a()`, `b()`).
-- Manejo de **excepciones genéricas** y `System.out.println`.
-- **Modelo con campos públicos** y sin validaciones.
-- **Repositorio en memoria** que **expone la colección interna**.
-- **Valores mágicos** y respuestas **no tipadas**.
+### Código Original (con problemas de calidad)
+- `UsuarioController.java` - Controlador con múltiples responsabilidades
+- `Usuario.java` - Modelo sin encapsulación adecuada  
+- `UsuarioService.java` - Servicio con validaciones duplicadas
+- `UsuarioRepository.java` - Repositorio con métodos ineficientes
 
-## Tareas sugeridas de refactorización
-- [ ] Introducir `@Service`, `@Repository` y **inyección por constructor**.
-- [ ] Usar `ResponseEntity<>` y **DTOs** para requests/responses.
-- [ ] Validar con `jakarta.validation` (`@NotBlank`, `@Email`, `@Min`, etc.).
-- [ ] Centralizar manejo de errores con `@RestControllerAdvice`.
-- [ ] Extraer utilidades duplicadas y **eliminar magia** (constantes).
-- [ ] Encapsular el modelo (campos privados + getters/setters).
-- [ ] Revisar nombres de endpoints y **versionar API** (`/api/v1/users`).
+### Código Refactorizado (buenas prácticas aplicadas)
+- `UsuarioControllerRefactorizado.java` - Controlador con responsabilidad única
+- `UsuarioRefactorizado.java` - Modelo con validaciones Bean Validation
+- `UsuarioServiceRefactorizado.java` - Servicio con lógica centralizada
+- `UsuarioValidationService.java` - Validaciones centralizadas
+- `UsuarioRepositoryRefactorizado.java` - Repositorio optimizado con índices
+- `GlobalExceptionHandler.java` - Manejo centralizado de errores
 
-## Endpoints actuales (mal diseñados)
-- `GET /listAll`
-- `POST /createUserNow`
-- `GET /user/{id}`
-- `DELETE /del/{id}`
+## 🛠️ Tecnologías Utilizadas
 
-## Ejecución
+- **Java 17** - Versión LTS
+- **Spring Boot 3.3.1** - Framework principal
+- **Maven** - Gestión de dependencias y build
+- **JaCoCo 0.8.8** - Cobertura de pruebas
+- **JUnit 5** - Framework de pruebas unitarias
+- **Mockito** - Mocking para pruebas
+- **Lombok** - Reducción de código boilerplate
+- **Bean Validation** - Validaciones con anotaciones
+
+## 🚀 Comandos de Ejecución
+
 ```bash
+# Compilar el proyecto
+mvn clean compile
+
+# Ejecutar pruebas y generar reporte JaCoCo
+mvn clean test
+
+# Ejecutar solo pruebas funcionales
+mvn clean test -Dtest=UsuarioServiceTest,UsuarioServiceRefactorizadoTest
+
+# Ejecutar la aplicación
 mvn spring-boot:run
 ```
 
-> Nota: El repositorio es **en memoria**. Es suficiente para practicar refactorización de capas sin agregar BD.
+## 📊 Reporte de Cobertura JaCoCo
 
-## Entregables del equipo
-1. Código refactorizado.
-2. Explicación corta de cambios y justificación técnica.
-3. Antes/Después (fragmentos de código).
+Después de ejecutar las pruebas, el reporte se genera automáticamente:
 
-¡Éxitos y que el código quede impecable! ✨
+- **📍 Ubicación**: `target/site/jacoco/index.html`
+- **📈 Formato**: HTML interactivo con métricas detalladas
+- **📋 Métricas**: Cobertura de líneas, ramas e instrucciones por clase
+
+## 🌐 Endpoints de la API
+
+### API Original (con problemas)
+```
+POST   /api/usuarios       - Crear usuario
+GET    /api/usuarios       - Obtener todos los usuarios  
+GET    /api/usuarios/{id}  - Obtener usuario por ID
+PUT    /api/usuarios/{id}  - Actualizar usuario
+DELETE /api/usuarios/{id}  - Eliminar usuario
+```
+
+### API Refactorizada (mejorada)
+```
+POST   /api/v2/usuarios       - Crear usuario (con validaciones)
+GET    /api/v2/usuarios       - Obtener todos los usuarios
+GET    /api/v2/usuarios/{id}  - Obtener usuario por ID (con manejo de errores)
+PUT    /api/v2/usuarios/{id}  - Actualizar usuario (validaciones centralizadas)
+DELETE /api/v2/usuarios/{id}  - Eliminar usuario (respuesta HTTP correcta)
+```
+
+## 📋 Checklist de Buenas Prácticas Implementadas
+
+- ✅ **Nombres claros** en variables, métodos y clases
+- ✅ **Separación Controller/Service/Repository** (arquitectura en capas)
+- ✅ **Eliminación de duplicidad** de código
+- ✅ **Métodos cortos** y una sola responsabilidad
+- ✅ **Validaciones con anotaciones** (Bean Validation)
+- ✅ **Manejo centralizado de errores** (@RestControllerAdvice)
+- ✅ **Evitar valores mágicos** (constantes y configuración)
+- ✅ **Pruebas unitarias básicas** con Mockito
+
+## 📄 Documentación de Evidencias
+
+Ver el archivo **`EVIDENCIAS.md`** para:
+
+- 📝 **Código refactorizado** con explicaciones detalladas
+- 📸 **Instrucciones para captura** del reporte JaCoCo
+- 🔍 **Análisis de problemas** encontrados y soluciones aplicadas
+- 📊 **Comparación antes/después** de la refactorización
+
+## 🏃‍♂️ Inicio Rápido
+
+1. **Clonar y compilar**:
+   ```bash
+   mvn clean compile
+   ```
+
+2. **Ejecutar pruebas**:
+   ```bash
+   mvn clean test -Dtest=UsuarioServiceTest,UsuarioServiceRefactorizadoTest
+   ```
+
+3. **Ver reporte de cobertura**:
+   - Abrir `target/site/jacoco/index.html` en navegador
+
+4. **Ejecutar aplicación**:
+   ```bash
+   mvn spring-boot:run
+   ```
+
+## 👨‍💻 Autor
+
+**Valery Chumpitaz** - Proyecto de mejora de calidad y refactorización de código
+
+---
+
+> 🎉 **Proyecto completado exitosamente** con todas las buenas prácticas implementadas y documentadas.
